@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.sb2.Board">
+  <select id="selectBoardList" resultType="board">
+    select * from board
+  </select>
+  <select id="selectBoard" resultType="board">
+    select * from board
+    where board_num=#{boardNum}
+  </select>
+  <update id="updateBoard">
+  	update board
+  	set board_type=#{boardType}
+    where board_num=#{boardNum}
+  </update>
+  <delete id="deleteBoard">
+    delete from board
+    where board_num=#{boardNum}
+  </delete>
+  <insert id="insertBoard">
+    insert board(board_type,board_num,board_title,board_comment,creator,modifier, create_time,modified_time)
+    values(#{boardType},#{boardNum},#{boardTitle},#{boardComment},#{creator},#{modifier},DATE_FORMAT(now(),'%y%m%d%H%i%s'),DATE_FORMAT(now(),'%y%m%d%H%i%s'))
+  </insert>
+</mapper>
